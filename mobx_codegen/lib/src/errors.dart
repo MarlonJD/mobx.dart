@@ -36,7 +36,7 @@ class StoreClassCodegenErrors implements CodegenError {
   final PropertyErrors nonAsyncMethods = NonAsyncMethods();
   final PropertyErrors invalidActionAnnotations = InvalidActionAnnotations();
 
-  List<CodegenError> _errorCategories;
+  late List<CodegenError> _errorCategories;
 
   @override
   String get message {
@@ -96,7 +96,7 @@ abstract class PropertyErrors implements CodegenError {
 
   Pluralize propertyPlural = _fieldPluralizer;
 
-  String get property => propertyPlural(_properties.length);
+  String? get property => propertyPlural(_properties.length);
 
   @override
   bool get hasErrors => _properties.isNotEmpty;

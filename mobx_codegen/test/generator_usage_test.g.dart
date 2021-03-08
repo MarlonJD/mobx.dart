@@ -9,12 +9,12 @@ part of 'generator_usage_test.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$TestStore on _TestStore, Store {
-  Computed<String> _$fieldsComputed;
+  Computed<String>? _$fieldsComputed;
 
   @override
   String get fields =>
       (_$fieldsComputed ??= Computed<String>(() => super.fields)).value;
-  Computed<String> _$batchedItemsComputed;
+  Computed<String>? _$batchedItemsComputed;
 
   @override
   String get batchedItems =>
@@ -41,14 +41,14 @@ mixin _$TestStore on _TestStore, Store {
   final _$field2Atom = Atom(name: '_TestStore.field2');
 
   @override
-  String get field2 {
+  String? get field2 {
     _$field2Atom.context.enforceReadPolicy(_$field2Atom);
     _$field2Atom.reportObserved();
     return super.field2;
   }
 
   @override
-  set field2(String value) {
+  set field2(String? value) {
     _$field2Atom.context.conditionallyRunInAction(() {
       super.field2 = value;
       _$field2Atom.reportChanged();

@@ -11,9 +11,9 @@ import 'package:test/test.dart';
 class TestInfo {
   const TestInfo({this.description, this.source, this.output});
 
-  final String description;
-  final String output;
-  final String source;
+  final String? description;
+  final String? output;
+  final String? source;
 }
 
 const String pkgName = 'generator_sample';
@@ -53,7 +53,7 @@ Future<String> generate(String source) async {
           writer.assets[AssetId(pkgName, 'lib/generator_sample.g.dart')] ?? []);
 }
 
-String getFilePath(String filename) {
+String getFilePath(String? filename) {
   final context = path.Context(
       style: Platform.isWindows ? path.Style.windows : path.Style.posix);
   final baseDir = context.dirname(Platform.script.path);
@@ -64,7 +64,7 @@ String getFilePath(String filename) {
   return filePath;
 }
 
-Future<String> readFile(String filename) {
+Future<String> readFile(String? filename) {
   final path = getFilePath(filename);
 
   return File(path).readAsString();
@@ -79,7 +79,7 @@ void createTests(List<TestInfo> tests) {
   });
 }
 
-Future<void> compareFiles(String sourceFile, String outputFile) async {
+Future<void> compareFiles(String? sourceFile, String? outputFile) async {
   final source = await readFile(sourceFile);
   final generatedOutput = await generate(source);
   final output = await readFile(outputFile);

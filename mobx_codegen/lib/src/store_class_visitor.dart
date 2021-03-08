@@ -41,7 +41,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
 
   final _asyncChecker = AsyncMethodChecker();
 
-  StoreTemplate _storeTemplate;
+  StoreTemplate? _storeTemplate;
 
   LibraryScopedNameFinder typeNameFinder;
 
@@ -62,7 +62,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
           .addIf(!element.isAbstract, element.name);
     }
     // if the class is annotated to generate toString() method we add the information to the _storeTemplate
-    _storeTemplate.generateToString = hasGeneratedToString(element);
+    _storeTemplate!.generateToString = hasGeneratedToString(element);
   }
 
   @override
@@ -92,7 +92,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
       ..name = element.name
       ..isPrivate = element.isPrivate;
 
-    _storeTemplate.observables.add(template);
+    _storeTemplate!.observables.add(template);
     return;
   }
 
@@ -124,7 +124,7 @@ class StoreClassVisitor extends SimpleElementVisitor {
       ..type = typeNameFinder.findGetterTypeName(element)
       ..isPrivate = element.isPrivate;
 
-    _storeTemplate.computeds.add(template);
+    _storeTemplate!.computeds.add(template);
     return;
   }
 
@@ -142,19 +142,19 @@ class StoreClassVisitor extends SimpleElementVisitor {
 
       if (element.isAsynchronous) {
         final template = AsyncActionTemplate()
-          ..storeTemplate = _storeTemplate
+          ..storeTemplate = _storeTemplate!
           ..isObservable = _observableChecker.hasAnnotationOfExact(element)
           ..method =
               MethodOverrideTemplate.fromElement(element, typeNameFinder);
 
-        _storeTemplate.asyncActions.add(template);
+        _storeTemplate!.asyncActions.add(template);
       } else {
         final template = ActionTemplate()
-          ..storeTemplate = _storeTemplate
+          ..storeTemplate = _storeTemplate!
           ..method =
               MethodOverrideTemplate.fromElement(element, typeNameFinder);
 
-        _storeTemplate.actions.add(template);
+        _storeTemplate!.actions.add(template);
       }
     } else if (_observableChecker.hasAnnotationOfExact(element)) {
       if (_asyncObservableIsNotValid(element)) {
@@ -166,13 +166,13 @@ class StoreClassVisitor extends SimpleElementVisitor {
           ..method =
               MethodOverrideTemplate.fromElement(element, typeNameFinder);
 
-        _storeTemplate.observableFutures.add(template);
+        _storeTemplate!.observableFutures.add(template);
       } else if (_asyncChecker.returnsStream(element)) {
         final template = ObservableStreamTemplate()
           ..method =
               MethodOverrideTemplate.fromElement(element, typeNameFinder);
 
-        _storeTemplate.observableStreams.add(template);
+        _storeTemplate!.observableStreams.add(template);
       }
     }
 
@@ -204,11 +204,11 @@ bool isMixinStoreClass(ClassElement classElement) =>
 bool isStoreConfigAnnotatedStoreClass(ClassElement classElement) =>
     _toStringAnnotationChecker.hasAnnotationOfExact(classElement);
 
-bool hasGeneratedToString(ClassElement classElement) {
+bool? hasGeneratedToString(ClassElement classElement) {
   if (isStoreConfigAnnotatedStoreClass(classElement)) {
     final annotation =
         _toStringAnnotationChecker.firstAnnotationOfExact(classElement);
-    return annotation.getField('hasToString').toBoolValue();
+    return annotation.getField('hasToString')!.toBoolValue();
   }
   return true;
 }

@@ -1,15 +1,15 @@
 import 'package:mobx_codegen/src/template/store.dart';
 
 class ObservableTemplate {
-  StoreTemplate storeTemplate;
-  String atomName;
-  String type;
-  String name;
-  bool isPrivate;
+  StoreTemplate? storeTemplate;
+  String? atomName;
+  String? type;
+  String? name;
+  late bool isPrivate;
 
   @override
   String toString() => """
-  final $atomName = Atom(name: '${storeTemplate.parentTypeName}.$name');
+  final $atomName = Atom(name: '${storeTemplate!.parentTypeName}.$name');
 
   @override
   $type get $name {

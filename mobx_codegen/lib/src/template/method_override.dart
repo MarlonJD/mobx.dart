@@ -41,20 +41,20 @@ class MethodOverrideTemplate {
           '<', '>', typeNameFinder.findReturnTypeArgumentTypeNames(method));
   }
 
-  String name;
-  String returnType;
-  SurroundedCommaList<String> returnTypeArgs;
+  String? name;
+  String? returnType;
+  SurroundedCommaList<String>? returnTypeArgs;
 
-  SurroundedCommaList<TypeParamTemplate> _typeParams;
-  SurroundedCommaList<String> _typeArgs;
+  SurroundedCommaList<TypeParamTemplate>? _typeParams;
+  SurroundedCommaList<String?>? _typeArgs;
 
-  CommaList<ParamTemplate> _positionalParams;
-  SurroundedCommaList<ParamTemplate> _optionalParams;
-  SurroundedCommaList<ParamTemplate> _namedParams;
+  CommaList<ParamTemplate>? _positionalParams;
+  SurroundedCommaList<ParamTemplate>? _optionalParams;
+  SurroundedCommaList<ParamTemplate>? _namedParams;
 
-  CommaList<String> _positionalArgs;
-  CommaList<String> _optionalArgs;
-  CommaList<NamedArgTemplate> _namedArgs;
+  CommaList<String?>? _positionalArgs;
+  CommaList<String?>? _optionalArgs;
+  CommaList<NamedArgTemplate>? _namedArgs;
 
   // ignore: always_declare_return_types, type_annotate_public_apis
   setTypeParams(Iterable<TypeParamTemplate> params) {
@@ -86,7 +86,7 @@ class MethodOverrideTemplate {
 
   CommaList get args => CommaList([_positionalArgs, _optionalArgs, _namedArgs]);
 
-  SurroundedCommaList<TypeParamTemplate> get typeParams => _typeParams;
+  SurroundedCommaList<TypeParamTemplate>? get typeParams => _typeParams;
 
-  SurroundedCommaList<String> get typeArgs => _typeArgs;
+  SurroundedCommaList<String?>? get typeArgs => _typeArgs;
 }

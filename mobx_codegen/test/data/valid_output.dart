@@ -3,14 +3,14 @@ mixin _$User on UserBase, Store {
 
   @override
   String get fullName => (_$fullNameComputed ??=
-      Computed<String>(() => super.fullName, name: 'UserBase.fullName'))
+          Computed<String>(() => super.fullName, name: 'UserBase.fullName'))
       .value;
   Computed<String?>? _$fullNameNullableComputed;
 
   @override
   String? get fullNameNullable => (_$fullNameNullableComputed ??=
-      Computed<String?>(() => super.fullNameNullable,
-          name: 'UserBase.fullNameNullable'))
+          Computed<String?>(() => super.fullNameNullable,
+              name: 'UserBase.fullNameNullable'))
       .value;
 
   final _$firstNameAtom = Atom(name: 'UserBase.firstName');
@@ -222,7 +222,7 @@ mixin _$User on UserBase, Store {
   }
 
   final _$fetchUsersNullableAsyncAction =
-  AsyncAction('UserBase.fetchUsersNullable');
+      AsyncAction('UserBase.fetchUsersNullable');
 
   @override
   Future<List<User>> fetchUsersNullable() {
@@ -231,7 +231,7 @@ mixin _$User on UserBase, Store {
   }
 
   final _$setAsyncFirstNameNullableAsyncAction =
-  AsyncAction('UserBase.setAsyncFirstNameNullable');
+      AsyncAction('UserBase.setAsyncFirstNameNullable');
 
   @override
   Future<void> setAsyncFirstNameNullable() {
@@ -240,7 +240,7 @@ mixin _$User on UserBase, Store {
   }
 
   final _$setAsyncFirstNameAsyncAction =
-  AsyncAction('UserBase.setAsyncFirstName');
+      AsyncAction('UserBase.setAsyncFirstName');
 
   @override
   Future<void> setAsyncFirstName() {
@@ -248,7 +248,7 @@ mixin _$User on UserBase, Store {
   }
 
   final _$setAsyncFirstName2AsyncAction =
-  AsyncAction('UserBase.setAsyncFirstName2');
+      AsyncAction('UserBase.setAsyncFirstName2');
 
   @override
   ObservableFuture<void> setAsyncFirstName2() {
@@ -257,7 +257,7 @@ mixin _$User on UserBase, Store {
   }
 
   final _$setAsyncFirstName2NullableAsyncAction =
-  AsyncAction('UserBase.setAsyncFirstName2Nullable');
+      AsyncAction('UserBase.setAsyncFirstName2Nullable');
 
   @override
   ObservableFuture<void> setAsyncFirstName2Nullable() {
@@ -270,7 +270,7 @@ mixin _$User on UserBase, Store {
   @override
   void updateNames({required String firstName, String lastName}) {
     final _$actionInfo =
-    _$UserBaseActionController.startAction(name: 'UserBase.updateNames');
+        _$UserBaseActionController.startAction(name: 'UserBase.updateNames');
     try {
       return super.updateNames(firstName: firstName, lastName: lastName);
     } finally {
@@ -293,7 +293,7 @@ mixin _$User on UserBase, Store {
   @override
   void setBlob(dynamic blob) {
     final _$actionInfo =
-    _$UserBaseActionController.startAction(name: 'UserBase.setBlob');
+        _$UserBaseActionController.startAction(name: 'UserBase.setBlob');
     try {
       return super.setBlob(blob);
     } finally {

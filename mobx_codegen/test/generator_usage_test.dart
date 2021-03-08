@@ -12,7 +12,7 @@ abstract class _TestStore with Store {
   String field1;
 
   @observable
-  String field2;
+  String? field2;
 
   @action
   void setFields(String field1, String field2) {
@@ -117,7 +117,7 @@ abstract class _TestStore with Store {
 }
 
 void main() {
-  ReactiveWritePolicy prevWritePolicy;
+  late ReactiveWritePolicy prevWritePolicy;
   setUp(() {
     prevWritePolicy = mainContext.config.writePolicy;
     mainContext.config =
@@ -131,7 +131,7 @@ void main() {
   test('setting fields with action works', () {
     final store = TestStore('field1', field2: 'field2');
 
-    final fields = <String>[];
+    final fields = <String?>[];
     autorun((_) {
       fields.add(store.field1);
       // ignore: cascade_invocations
@@ -187,7 +187,7 @@ void main() {
     final store = TestStore('field1', field2: 'field2');
     final stream = store.asyncGenerator();
 
-    final stuff = <String>[];
+    final stuff = <String?>[];
     autorun((_) {
       stuff.add(stream.value);
     });
@@ -200,7 +200,7 @@ void main() {
     final store = TestStore('field1', field2: 'field2');
     final stream = store.stream();
 
-    final stuff = <String>[];
+    final stuff = <String?>[];
     autorun((_) {
       stuff.add(stream.value);
     });
@@ -213,7 +213,7 @@ void main() {
     final store = TestStore('field1', field2: 'field2');
     final future = store.future();
 
-    final values = <String>[];
+    final values = <String?>[];
     autorun((_) {
       values.add(future.value);
     });
@@ -227,7 +227,7 @@ void main() {
     final store = TestStore('field1', field2: 'field2');
     final future = store.asyncMethod();
 
-    final values = <String>[];
+    final values = <String?>[];
     autorun((_) {
       values.add(future.value);
     });

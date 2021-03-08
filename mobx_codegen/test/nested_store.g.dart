@@ -12,14 +12,14 @@ mixin _$NestedStore on _NestedStore, Store {
   final _$nameAtom = Atom(name: '_NestedStore.name');
 
   @override
-  String get name {
+  String? get name {
     _$nameAtom.context.enforceReadPolicy(_$nameAtom);
     _$nameAtom.reportObserved();
     return super.name;
   }
 
   @override
-  set name(String value) {
+  set name(String? value) {
     _$nameAtom.context.conditionallyRunInAction(() {
       super.name = value;
       _$nameAtom.reportChanged();

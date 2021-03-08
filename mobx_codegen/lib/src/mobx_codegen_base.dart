@@ -4,6 +4,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type_system.dart';
 import 'package:build/build.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:mobx_codegen/src/store_class_visitor.dart';
 import 'package:mobx_codegen/src/template/store_file.dart';
 import 'package:mobx_codegen/src/template/store.dart';
@@ -41,10 +42,11 @@ class StoreGenerator extends Generator {
   ) sync* {
     final typeNameFinder = LibraryScopedNameFinder(library.element);
     final otherClasses = library.classes.where((c) => c != baseClass);
-    final mixedClass = otherClasses.firstWhere((c) {
+    final mixedClass = otherClasses.firstWhereOrNull((c) {
       // If our base class has different type parameterization requirements than
       // the class we're evaluating provides, we know it's not a subclass.
-      if (baseClass.typeParameters.length != c.supertype.typeArguments.length) {
+      if (baseClass.typeParameters.length !=
+          c.supertype!.typeArguments.length) {
         return false;
       }
 
@@ -53,10 +55,10 @@ class StoreGenerator extends Generator {
       return typeSystem.isSubtypeOf(
         c.thisType,
         baseClass.instantiate(
-            typeArguments: c.supertype.typeArguments,
+            typeArguments: c.supertype!.typeArguments,
             nullabilitySuffix: NullabilitySuffix.none),
       );
-    }, orElse: () => null);
+    });
 
     if (mixedClass != null) {
       yield _generateCodeFromTemplate(

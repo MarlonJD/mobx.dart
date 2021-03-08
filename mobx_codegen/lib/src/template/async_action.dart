@@ -2,9 +2,9 @@ import 'package:mobx_codegen/src/template/method_override.dart';
 import 'package:mobx_codegen/src/template/store.dart';
 
 class AsyncActionTemplate {
-  StoreTemplate storeTemplate;
-  bool isObservable;
-  MethodOverrideTemplate method;
+  late StoreTemplate storeTemplate;
+  late bool isObservable;
+  late MethodOverrideTemplate method;
 
   String get _actionField => '_\$${method.name}AsyncAction';
 

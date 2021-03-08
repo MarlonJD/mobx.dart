@@ -23,8 +23,8 @@ abstract class StoreTemplate {
       SurroundedCommaList('<', '>', []);
   final SurroundedCommaList<String> typeArgs =
       SurroundedCommaList('<', '>', []);
-  String publicTypeName;
-  String parentTypeName;
+  String? publicTypeName;
+  String? parentTypeName;
 
   final Rows<ObservableTemplate> observables = Rows();
   final Rows<ComputedTemplate> computeds = Rows();
@@ -34,8 +34,8 @@ abstract class StoreTemplate {
   final Rows<ObservableStreamTemplate> observableStreams = Rows();
   final List<String> toStringList = [];
 
-  bool generateToString = false;
-  String _actionControllerName;
+  bool? generateToString = false;
+  String? _actionControllerName;
   String get actionControllerName =>
       _actionControllerName ??= '_\$${parentTypeName}ActionController';
 
@@ -44,7 +44,7 @@ abstract class StoreTemplate {
       : "final $actionControllerName = ActionController(name: '$parentTypeName');";
 
   String get toStringMethod {
-    if (!generateToString) {
+    if (!generateToString!) {
       return '';
     }
 

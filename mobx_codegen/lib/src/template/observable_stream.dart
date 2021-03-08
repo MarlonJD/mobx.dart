@@ -1,7 +1,7 @@
 import 'package:mobx_codegen/src/template/method_override.dart';
 
 class ObservableStreamTemplate {
-  MethodOverrideTemplate method;
+  late MethodOverrideTemplate method;
 
   @override
   // ignore: prefer_single_quotes

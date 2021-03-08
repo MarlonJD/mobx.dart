@@ -50,11 +50,6 @@ void main() {
     test('toString returns empty string if templates are empty', () {
       expect(CommaList([]).toString(), equals(''));
     });
-
-    test('constructor throws if templates list is null', () {
-      // ignore: unnecessary_lambdas
-      expect(() => CommaList(null).toString(), throwsA(anything));
-    });
   });
 
   group('SurroundedCommaList', () {
@@ -66,18 +61,6 @@ void main() {
     test('toString filters empty templates', () {
       expect(SurroundedCommaList('(', ')', ['A', 2, '', '', 'C']).toString(),
           equals('(A, 2, C)'));
-    });
-
-    test('constructor throws if any argument is null', () {
-      // ignore: unnecessary_lambdas
-      expect(() => SurroundedCommaList(null, ')', ['A']).toString(),
-          throwsA(anything));
-      // ignore: unnecessary_lambdas
-      expect(() => SurroundedCommaList('(', null, ['B']).toString(),
-          throwsA(anything));
-      // ignore: unnecessary_lambdas
-      expect(() => SurroundedCommaList('(', ')', null).toString(),
-          throwsA(anything));
     });
   });
 

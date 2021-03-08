@@ -47,7 +47,7 @@ MockMethod mockStreamMethod({
 
 MockTypeChecker streamChecker({bool isStream = false}) {
   final checker = MockTypeChecker();
-  when(checker.isAssignableFromType(any)).thenReturn(isStream);
+  when(checker.isAssignableFromType(any!)).thenReturn(isStream);
   return checker;
 }
 
